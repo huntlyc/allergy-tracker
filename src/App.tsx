@@ -56,20 +56,25 @@ function App() {
         <div className="row">
           <div className="col">
         { entries && entries.length > 0 && (
+          <>
             <PillTakenDialog entries={entries}></PillTakenDialog>
+            <Entries entries={entries}></Entries>
+          </>
         )}
         <UpdateForm onSubmit={addEntryHandler}></UpdateForm>
-        { entries && entries.length > 0 && (
-            <Entries entries={entries}></Entries>
-        )}
         </div>
         </div>
       </main>
-      <footer className="container">
+      <footer className="container mt-5">
         <div className="row">
           <div className="col">
-        <button className="btn btn-danger" onClick={clearDB}>Clear DB</button>
-        </div>
+            <div className="alert alert-danger">
+              <h4 className="alert-heading"><del>Highway to the</del> Dagner Zone</h4>
+              <p>You can clear your your entries by clicking the button below.  You can't get them back through.</p>
+              <hr/>
+              <button className="btn btn-sm btn-outline-danger" onClick={clearDB}>Clear DB</button>
+            </div>
+          </div>
         </div>
       </footer>
     </>

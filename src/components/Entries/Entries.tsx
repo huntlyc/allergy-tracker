@@ -48,7 +48,10 @@ const Entry:FunctionComponent<EntryProps> = ({entry}) => {
         let monthString = (date.getMonth() + 1).toString().padStart(2, '0');
         let yearString = date.getFullYear();
 
-        dateString = `${dayString}/${monthString}/${yearString}`;
+        let hourString = date.getHours().toString().padStart(2,'0');
+        let minuteString = date.getMinutes().toString().padStart(2,'0');
+
+        dateString = `${dayString}/${monthString}/${yearString} @ ${hourString}:${minuteString}`;
 
         return dateString
     }
