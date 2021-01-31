@@ -1,18 +1,13 @@
 import React, {FunctionComponent, useState} from 'react';
+import { MoodEnum } from '../../App';
 import './UpdateForm.css';
 
-export enum MoodEnum{
-    Great = 1,
-    OK,
-    Stuffy,
-    Congested,
-    Miserable
-};
 
 export type DiaryEntry = {
     mood: MoodEnum,
     pillTaken: boolean,
     additionalNotes: string
+    date: Date
 };
 
 interface UpdateFormProps{
@@ -32,7 +27,8 @@ const UpdateForm:FunctionComponent<UpdateFormProps> = ({onSubmit}) => {
         onSubmit({
             mood,
             pillTaken,
-            additionalNotes
+            additionalNotes,
+            date: new Date()
         });
     };
 
