@@ -1,4 +1,4 @@
-import React, {EventHandler, FunctionComponent, useState} from 'react';
+import React, {FunctionComponent, useState} from 'react';
 import { MoodEnum } from '../../App';
 import './UpdateForm.css';
 
@@ -63,8 +63,8 @@ const UpdateForm:FunctionComponent<UpdateFormProps> = ({onSubmit}) => {
 
     return (
         <>
-            <a className={toggleBtnClass} data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" onClick={toggleForm}>{toggleBtnText}</a>
-            <form className={collapseClass} id="multiCollapseExample1" name="update-form" onSubmit={handleFormSubmit}>
+            <a className={toggleBtnClass} data-toggle="collapse" href="#add-entry-form" role="button" aria-expanded="false" aria-controls="add-entry-form" onClick={toggleForm}>{toggleBtnText}</a>
+            <form className={collapseClass} id="add-entry-form" name="update-form" onSubmit={handleFormSubmit}>
 
                 <div className="card">
                     <div className="card-body">

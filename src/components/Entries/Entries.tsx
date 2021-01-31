@@ -58,7 +58,9 @@ const Entry:FunctionComponent<EntryProps> = ({entry}) => {
 
     console.log(entry);
     return (
-        <li>
+        <li className="card">
+            <div className="card-body">
+
             <dl>
                 <dt>Date Recorded</dt>
                 <dd>{convertDateToString(entry.date)}</dd>
@@ -77,6 +79,7 @@ const Entry:FunctionComponent<EntryProps> = ({entry}) => {
                     <dd>{entry.additionalNotes}</dd>
                 </dl>
             )}
+            </div>
         </li>
     )
 }

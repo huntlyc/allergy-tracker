@@ -9,6 +9,7 @@ ul {
 }
 
 li{
-  flex-basis: 100%;
+  flex-basis: calc(90% - 10px);
+  margin: 0 5px;
   flex-shrink: 0;
 }

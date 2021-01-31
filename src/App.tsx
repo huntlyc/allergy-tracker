@@ -48,21 +48,19 @@ function App() {
       <header className="container">
         <div className="row">
           <div className="col">
-              <h1>Allergy Diary</h1>
+              <h1 className="text-center">Allergy Diary</h1>
           </div>
         </div>
       </header>
       <main className="container">
         <div className="row">
           <div className="col">
-        { entries && entries.length > 0 && (
-          <>
-            <PillTakenDialog entries={entries}></PillTakenDialog>
-            <Entries entries={entries}></Entries>
-          </>
-        )}
-        <UpdateForm onSubmit={addEntryHandler}></UpdateForm>
-        </div>
+            {entries && <PillTakenDialog entries={entries}></PillTakenDialog>}
+            { entries && entries.length > 0 && (
+              <Entries entries={entries}></Entries>
+            )}
+            <UpdateForm onSubmit={addEntryHandler}></UpdateForm>
+          </div>
         </div>
       </main>
       <footer className="container mt-5">

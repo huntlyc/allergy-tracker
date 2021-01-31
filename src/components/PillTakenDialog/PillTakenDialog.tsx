@@ -16,7 +16,7 @@ const PillTakenDialog:FunctionComponent<PillTakenDialogProps> = ({entries}) => {
     return (
         <section className="card mb-2">
             <div className="card-body">
-                <h5 className="card-title">Pill Taken Today? <span className={badgeClass}>{pillTakenToday ? 'Yes' : 'No'}</span></h5>
+                <h5 className="mb-0 card-title">Pill Taken Today? <span className={badgeClass}>{pillTakenToday ? 'Yes' : 'No'}</span></h5>
             </div>
         </section>
     )
