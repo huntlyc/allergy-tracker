@@ -11,7 +11,7 @@ const PillTakenDialog:FunctionComponent<PillTakenDialogProps> = ({entries}) => {
     const dateToNumber = (date: Date) => parseInt(`${date.getFullYear()}${date.getMonth()}${date.getDate()}`);
     let today = dateToNumber(new Date());
     const pillTakenToday = (undefined !== entries.find(entry => { return dateToNumber(entry.date) === today && entry.pillTaken } ));
-    const badgeClass = `badge badge-${pillTakenToday ? 'warning': 'secondary'}`;
+    const badgeClass = `badge badge-${pillTakenToday ? 'warning': 'info'}`;
 
     return (
         <section className="card mb-2">

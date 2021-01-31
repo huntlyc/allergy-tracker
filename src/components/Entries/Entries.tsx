@@ -39,7 +39,6 @@ const Entry:FunctionComponent<EntryProps> = ({entry}) => {
         return moodAsString;
     };
 
-    const convertPillTakenToString = (taken:boolean) => (taken ? "Taken" : "Not Taken");
 
     const convertDateToString = (date: Date) => {
         let dateString = '';
@@ -56,28 +55,18 @@ const Entry:FunctionComponent<EntryProps> = ({entry}) => {
         return dateString
     }
 
-    console.log(entry);
     return (
         <li className="card">
             <div className="card-body">
 
-            <dl>
-                <dt>Date Recorded</dt>
-                <dd>{convertDateToString(entry.date)}</dd>
-            </dl>
-            <dl>
-                <dt>Mood</dt>
-                <dd>{convertMoodToString(entry.mood)}</dd>
-            </dl>
-            <dl>
-                <dt>Pill Taken</dt>
-                <dd>{convertPillTakenToString(entry.pillTaken)}</dd>
-            </dl>
+                <h5 className="card-title">Mood: {convertMoodToString(entry.mood)}</h5>
+                <h6 className="card-subtitle text-muted mb-2">Logged: <time dateTime={entry.date.toISOString()}>{convertDateToString(entry.date)}</time></h6>
+                <p className="card-text">Pill Taken: <strong>{entry.pillTaken ? "Yes" : "No"}</strong></p>
             {entry.additionalNotes !== '' && (
-                <dl>
-                    <dt>Notes</dt>
-                    <dd>{entry.additionalNotes}</dd>
-                </dl>
+                <>
+                    <h6 className="card-subtitle">Notes</h6>
+                    <p className="card-text">{entry.additionalNotes}</p>
+                </>
             )}
             </div>
         </li>
