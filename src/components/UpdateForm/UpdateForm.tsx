@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from 'react';
+import React, {EventHandler, FunctionComponent, useState} from 'react';
 import { MoodEnum } from '../../App';
 import './UpdateForm.css';
 
@@ -16,6 +16,7 @@ interface UpdateFormProps{
 
 const UpdateForm:FunctionComponent<UpdateFormProps> = ({onSubmit}) => {
 
+    const [collapsed, setCollapsed] = useState<boolean>(true);
     const [mood, setMood] = useState<number>(1);
     const [pillTaken, setPillTaken] = useState<boolean>(false);
     const [additionalNotes, setAdditionalNotes] = useState<string>('');
@@ -51,10 +52,18 @@ const UpdateForm:FunctionComponent<UpdateFormProps> = ({onSubmit}) => {
     };
 
 
+    const toggleForm = () => {
+        setCollapsed(!collapsed);
+    }
+
+
+    let collapseClass = `collapse multi-collapse ${collapsed ? '' : 'show'}`;
+    let toggleBtnText = collapsed ? 'Add new entry' : 'Hide form';
+
     return (
         <>
-            <a className="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add new entry</a>
-            <form className="collapse multi-collapse" id="multiCollapseExample1" name="update-form" onSubmit={handleFormSubmit}>
+            <a className="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" onClick={toggleForm}>{toggleBtnText}</a>
+            <form className={collapseClass} id="multiCollapseExample1" name="update-form" onSubmit={handleFormSubmit}>
 
                 <div className="form-group">
                     <label htmlFor="mood">Mood:</label>
