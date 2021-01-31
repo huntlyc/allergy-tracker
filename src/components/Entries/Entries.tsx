@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { MoodEnum } from '../../App';
 import { IEntry } from '../../lib/db/db';
+import './Entries.css';
 
 
 interface EntriesProps{
@@ -10,7 +11,7 @@ interface EntriesProps{
 
 const Entries:FunctionComponent<EntriesProps> = ({entries}) => {
     return (
-        <ul>
+        <ul className="mb-2 mt-2">
             {entries.map((entry: IEntry) => {
                  return <Entry key={entry.id} entry={entry}></Entry>
             })}

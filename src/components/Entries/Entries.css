@@ -1,0 +1,14 @@
+ul {
+  padding-left: 0;
+  margin-left: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+li{
+  flex-basis: 100%;
+  flex-shrink: 0;
+}

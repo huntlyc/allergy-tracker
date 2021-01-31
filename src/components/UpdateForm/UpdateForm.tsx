@@ -52,26 +52,35 @@ const UpdateForm:FunctionComponent<UpdateFormProps> = ({onSubmit}) => {
 
 
     return (
-        <form name="update-form" onSubmit={handleFormSubmit}>
+        <>
+            <a className="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Add new entry</a>
+            <form className="collapse multi-collapse" id="multiCollapseExample1" name="update-form" onSubmit={handleFormSubmit}>
 
-            <label htmlFor="mood">Mood:</label>
-            <select name="mood" id="mood" onChange={moodChangeHandler}>
-                <option value="1">Great</option>
-                <option value="2">OK</option>
-                <option value="3">Slightly Stuffy</option>
-                <option value="4">Congested</option>
-                <option value="5">Miserable</option>
-            </select>
+                <div className="form-group">
+                    <label htmlFor="mood">Mood:</label>
+                    <select className="form-control" name="mood" id="mood" onChange={moodChangeHandler}>
+                        <option value="1">Great</option>
+                        <option value="2">OK</option>
+                        <option value="3">Slightly Stuffy</option>
+                        <option value="4">Congested</option>
+                        <option value="5">Miserable</option>
+                    </select>
+                </div>
 
-            <label htmlFor="pillTaken">Allergy Tablet Taken?</label>
-            <input type="checkbox" name="pillTaken" id="pillTaken" onChange={pillTakenChangeHandler}></input>
+                <div className="form-group form-check">
+                    <input className="form-check-input" type="checkbox" name="pillTaken" id="pillTaken" onChange={pillTakenChangeHandler}></input>
+                    <label className="form-check-label" htmlFor="pillTaken">Allergy Tablet Taken?</label>
+                </div>
 
-            <label htmlFor="additionalNotes">Additional Notes</label>
-            <textarea name="additionalNotes" id="additionalNotes" onChange={additionalNotesChangeHandler}></textarea>
+                <div className="form-group">
+                    <label htmlFor="additionalNotes">Additional Notes</label>
+                    <textarea className="form-control" name="additionalNotes" id="additionalNotes" onChange={additionalNotesChangeHandler}></textarea>
+                </div>
 
-            <button type="submit">Add Entry</button>
+                <button className="btn btn-primary" type="submit">Add Entry</button>
 
-        </form>
+            </form>
+        </>
     )
 };
 

@@ -45,20 +45,32 @@ function App() {
   }
   return (
     <>
-      <header>
-        <h1>Allergy Diary</h1>
+      <header className="container">
+        <div className="row">
+          <div className="col">
+              <h1>Allergy Diary</h1>
+          </div>
+        </div>
       </header>
-      <main>
+      <main className="container">
+        <div className="row">
+          <div className="col">
+        { entries && entries.length > 0 && (
+            <PillTakenDialog entries={entries}></PillTakenDialog>
+        )}
         <UpdateForm onSubmit={addEntryHandler}></UpdateForm>
         { entries && entries.length > 0 && (
-          <>
-            <PillTakenDialog entries={entries}></PillTakenDialog>
             <Entries entries={entries}></Entries>
-          </>
         )}
+        </div>
+        </div>
       </main>
-      <footer>
-        <button onClick={clearDB}>Clear DB</button>
+      <footer className="container">
+        <div className="row">
+          <div className="col">
+        <button className="btn btn-danger" onClick={clearDB}>Clear DB</button>
+        </div>
+        </div>
       </footer>
     </>
   );

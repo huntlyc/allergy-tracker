@@ -13,9 +13,11 @@ const PillTakenDialog:FunctionComponent<PillTakenDialogProps> = ({entries}) => {
     const pillTakenToday = (undefined !== entries.find(entry => { return dateToNumber(entry.date) === today && entry.pillTaken } ));
 
     return (
-        <section>
-            <h1>Pill Taken Today?</h1>
-            <p>{pillTakenToday ? 'Yes' : 'No'}</p>
+        <section className="card mb-2">
+            <div className="card-body">
+                <h5 className="card-title">Pill Taken Today?</h5>
+                <p>{pillTakenToday ? 'Yes' : 'No'}</p>
+            </div>
         </section>
     )
 }
