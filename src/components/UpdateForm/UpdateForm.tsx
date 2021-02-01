@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from 'react';
+import React, {FunctionComponent, useRef, useState} from 'react';
 import { MoodEnum } from '../../App';
 import './UpdateForm.css';
 
@@ -21,6 +21,11 @@ const UpdateForm:FunctionComponent<UpdateFormProps> = ({onSubmit}) => {
     const [pillTaken, setPillTaken] = useState<boolean>(false);
     const [additionalNotes, setAdditionalNotes] = useState<string>('');
 
+    const moodRef = useRef<HTMLSelectElement>(null);
+    const pillTakenRef = useRef<HTMLInputElement>(null);
+    const notesRef = useRef<HTMLTextAreaElement>(null);
+
+
 
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -31,6 +36,15 @@ const UpdateForm:FunctionComponent<UpdateFormProps> = ({onSubmit}) => {
             additionalNotes,
             date: new Date()
         });
+
+        // clear form
+        if(moodRef.current) moodRef.current.value = "1";
+        if(pillTakenRef.current) pillTakenRef.current.checked = false;
+        if(notesRef.current) notesRef.current.value = '';
+
+        // hide form
+        setCollapsed(true);
+
     };
 
     const moodChangeHandler = (e: React.FormEvent) => {
@@ -71,7 +85,7 @@ const UpdateForm:FunctionComponent<UpdateFormProps> = ({onSubmit}) => {
 
                         <div className="form-group">
                             <label htmlFor="mood">Mood:</label>
-                            <select className="form-control" name="mood" id="mood" onChange={moodChangeHandler}>
+                            <select ref={moodRef} className="form-control" name="mood" id="mood" onChange={moodChangeHandler}>
                                 <option value="1">Great</option>
                                 <option value="2">OK</option>
                                 <option value="3">Slightly Stuffy</option>
@@ -81,13 +95,13 @@ const UpdateForm:FunctionComponent<UpdateFormProps> = ({onSubmit}) => {
                         </div>
 
                         <div className="form-group form-check">
-                            <input className="form-check-input" type="checkbox" name="pillTaken" id="pillTaken" onChange={pillTakenChangeHandler}></input>
+                            <input ref={pillTakenRef} className="form-check-input" type="checkbox" name="pillTaken" id="pillTaken" onChange={pillTakenChangeHandler}></input>
                             <label className="form-check-label" htmlFor="pillTaken">Check if tablet taken today</label>
                         </div>
 
                         <div className="form-group">
                             <label htmlFor="additionalNotes">Additional Notes</label>
-                            <textarea className="form-control" name="additionalNotes" id="additionalNotes" onChange={additionalNotesChangeHandler}></textarea>
+                            <textarea ref={notesRef} className="form-control" name="additionalNotes" id="additionalNotes" onChange={additionalNotesChangeHandler}></textarea>
                         </div>
 
                         <button className="btn btn-primary" type="submit">Add Entry</button>
