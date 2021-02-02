@@ -10,6 +10,9 @@ interface EntriesProps{
 
 
 const Entries:FunctionComponent<EntriesProps> = ({entries}) => {
+
+    if(entries.length === 0) return <p>No Entries Yet</p>;
+
     return (
         <ul className="mb-2 mt-2">
             {entries.map((entry: IEntry) => {

@@ -6,12 +6,7 @@ interface PageProps {
     title: string,
 }
 
-const Page:FunctionComponent<PageProps> = ({title, children}) => {
-
-    let displayTitle = 'Allergy Diary';
-    if(title !== ''){
-        displayTitle = title;
-    }
+const Page:FunctionComponent<PageProps> = ({title = 'Allergy Diary', children}) => {
 
     return (
         <>
@@ -19,7 +14,7 @@ const Page:FunctionComponent<PageProps> = ({title, children}) => {
                 <div className="row">
                 <div className="col">
                     <h1 className="text-center">
-                        <Link to="/">{displayTitle}</Link>
+                        <Link to="/">{title}</Link>
                     </h1>
                 </div>
                 </div>
