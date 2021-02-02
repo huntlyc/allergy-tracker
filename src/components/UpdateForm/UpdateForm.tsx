@@ -16,7 +16,6 @@ interface UpdateFormProps{
 
 const UpdateForm:FunctionComponent<UpdateFormProps> = ({onSubmit}) => {
 
-    const [collapsed, setCollapsed] = useState<boolean>(true);
     const [mood, setMood] = useState<number>(1);
     const [pillTaken, setPillTaken] = useState<boolean>(false);
     const [additionalNotes, setAdditionalNotes] = useState<string>('');
@@ -41,10 +40,6 @@ const UpdateForm:FunctionComponent<UpdateFormProps> = ({onSubmit}) => {
         if(moodRef.current) moodRef.current.value = "1";
         if(pillTakenRef.current) pillTakenRef.current.checked = false;
         if(notesRef.current) notesRef.current.value = '';
-
-        // hide form
-        setCollapsed(true);
-
     };
 
     const moodChangeHandler = (e: React.FormEvent) => {
@@ -66,50 +61,42 @@ const UpdateForm:FunctionComponent<UpdateFormProps> = ({onSubmit}) => {
     };
 
 
-    const toggleForm = () => {
-        setCollapsed(!collapsed);
-    }
 
 
-    let collapseClass = `collapse multi-collapse ${collapsed ? '' : 'show'}`;
-    let toggleBtnText = collapsed ? 'Add new entry' : 'Hide form';
-    let toggleBtnClass = `btn btn-${collapsed ? 'primary' : 'secondary'}`;
+
 
     return (
-        <>
-            <a className={toggleBtnClass} data-toggle="collapse" href="#add-entry-form" role="button" aria-expanded="false" aria-controls="add-entry-form" onClick={toggleForm}>{toggleBtnText}</a>
-            <form className={collapseClass} id="add-entry-form" name="update-form" onSubmit={handleFormSubmit}>
+        <form id="add-entry-form" name="update-form" onSubmit={handleFormSubmit}>
 
-                <div className="card">
-                    <div className="card-body">
+            <div className="card">
+                <div className="card-body">
 
-                        <div className="form-group">
-                            <label htmlFor="mood">Mood:</label>
-                            <select ref={moodRef} className="form-control" name="mood" id="mood" onChange={moodChangeHandler}>
-                                <option value="1">Great</option>
-                                <option value="2">OK</option>
-                                <option value="3">Slightly Stuffy</option>
-                                <option value="4">Congested</option>
-                                <option value="5">Miserable</option>
-                            </select>
-                        </div>
-
-                        <div className="form-group form-check">
-                            <input ref={pillTakenRef} className="form-check-input" type="checkbox" name="pillTaken" id="pillTaken" onChange={pillTakenChangeHandler}></input>
-                            <label className="form-check-label" htmlFor="pillTaken">Check if tablet taken today</label>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="additionalNotes">Additional Notes</label>
-                            <textarea ref={notesRef} className="form-control" name="additionalNotes" id="additionalNotes" onChange={additionalNotesChangeHandler}></textarea>
-                        </div>
-
-                        <button className="btn btn-primary" type="submit">Add Entry</button>
-
+                    <div className="form-group">
+                        <label htmlFor="mood">Mood:</label>
+                        <select ref={moodRef} className="form-control" name="mood" id="mood" onChange={moodChangeHandler}>
+                            <option value="1">Great</option>
+                            <option value="2">OK</option>
+                            <option value="3">Slightly Stuffy</option>
+                            <option value="4">Congested</option>
+                            <option value="5">Miserable</option>
+                        </select>
                     </div>
+
+                    <div className="form-group form-check">
+                        <input ref={pillTakenRef} className="form-check-input" type="checkbox" name="pillTaken" id="pillTaken" onChange={pillTakenChangeHandler}></input>
+                        <label className="form-check-label" htmlFor="pillTaken">Check if tablet taken today</label>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="additionalNotes">Additional Notes</label>
+                        <textarea ref={notesRef} className="form-control" name="additionalNotes" id="additionalNotes" onChange={additionalNotesChangeHandler}></textarea>
+                    </div>
+
+                    <button className="btn btn-primary" type="submit">Add Entry</button>
+
                 </div>
-            </form>
-        </>
+            </div>
+        </form>
     )
 };
 
