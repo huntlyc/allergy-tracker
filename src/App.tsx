@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Entries from './components/Entries/Entries';
-import PillTakenDialog from './components/PillTakenDialog/PillTakenDialog';
-import UpdateForm, { DiaryEntry } from './components/UpdateForm/UpdateForm';
+import { DiaryEntry } from './components/UpdateForm/UpdateForm';
 import {DataStore, IEntry} from './lib/db/db';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  // Link
+} from "react-router-dom";
+import HomePage from './pages/HomePage/HomePage';
+import SettingsPage from './pages/SettingsPage/SetiingsPage';
+import AddEntryPage from './pages/AddEntryPage/AddEntryPage';
 
 const db: DataStore = new DataStore();
 export enum MoodEnum{
@@ -42,40 +49,22 @@ function App() {
 
   const clearDB = () => {
     db.entries.clear().then(() => { setEntries([]) });
-  }
+  };
+
   return (
-    <>
-      <header className="container">
-        <div className="row">
-          <div className="col">
-              <h1 className="text-center">Allergy Diary</h1>
-          </div>
-        </div>
-      </header>
-      <main className="container">
-        <div className="row">
-          <div className="col">
-            {entries && <PillTakenDialog entries={entries}></PillTakenDialog>}
-            { entries && entries.length > 0 && (
-              <Entries entries={entries}></Entries>
-            )}
-            <UpdateForm onSubmit={addEntryHandler}></UpdateForm>
-          </div>
-        </div>
-      </main>
-      <footer className="container mt-5">
-        <div className="row">
-          <div className="col">
-            <div className="alert alert-danger">
-              <h4 className="alert-heading"><del>Highway to the</del> Dagner Zone</h4>
-              <p>You can clear your your entries by clicking the button below.  You can't get them back through.</p>
-              <hr/>
-              <button className="btn btn-sm btn-outline-danger" onClick={clearDB}>Clear DB</button>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <HomePage entries={entries} />
+        </Route>
+        <Route exact path="/new">
+          <AddEntryPage addEntryHandler={addEntryHandler} />
+        </Route>
+        <Route path="/settings">
+          <SettingsPage clearDB={clearDB}/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
